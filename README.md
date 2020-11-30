@@ -70,6 +70,7 @@
 | prefecture_ code | integer | null: false              |
 | preparation_day | integer | null: false, foreign_key:true |
 | category | references | null: false, foreign_key:true |
+| seller | references | null: false, foreign_key:true | 
 
 ### Association
 
