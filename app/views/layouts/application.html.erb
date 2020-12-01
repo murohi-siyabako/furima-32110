@@ -12,7 +12,20 @@
   <body>
     <header class="header">
       <div class="inner">
+<<<<<<< Updated upstream
         <div class ="">
+=======
+        <div class="nav">
+          <div class="nav_left">
+            <%= link_to imarge_tag("furima-logo-color.png",class: :logo), root_path %>
+          </div>
+          <% if user_signed_in?%>
+            <%= link_to "ログアウト", root_path, %>
+          <% else %>
+          <%end%>
+
+        </div>
+>>>>>>> Stashed changes
       </div>
     </header>
     <%= yield %>
