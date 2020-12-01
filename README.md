@@ -86,3 +86,4 @@
 ### Association
 
 - belongs_to :item
+
