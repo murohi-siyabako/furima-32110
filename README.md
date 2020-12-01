@@ -7,18 +7,6 @@
 | nickname | string | null: false |
 | email    | string | null: false |
 | password | string | null: false |
-
-### Association
-
-- has_many :items
-- has_one :profile
-- has_one :sending_destination
-- has_one :credit_card
-
-## profiles テーブル
-
-| Column | Type   | Options     |
-| ------ | ------ | ----------- |
 | first_name   | string | null: false |
 | family_name  | string | null: false |
 | first_name_kana | string | null: false |
@@ -28,7 +16,9 @@
 
 ### Association
 
-- belongs_to :user
+- has_many :items
+- has_one :sending_destinations
+- has_one :purchase_historys
 
 ## sending_destinations テーブル
 
@@ -40,11 +30,12 @@
 | house_number | string | null: false                  |
 | building_name | string |                             |
 | phone_number | string | null: false                 |
-| user   | references | null: false, foreign_key: true |
+| purchase_history | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
+- belongs_to :item
 
 ## items テーブル
 
@@ -57,22 +48,24 @@
 | postage_id | integer | null: false                 |
 | prefecture_id | integer | null: false              |
 | prepare_id | integer | null: false, foreign_key:true |
-| category | references | null: false, foreign_key:true |
-| seller | references | null: false, foreign_key:true | 
+| category_id | integer | null: false, foreign_key:true |
+| user | references | null: false, foreign_key:true | 
 
 ### Association
 
 - belongs_to :user
+- belongs_to :sending_destination
+- belongs_to :purchase_history
 
-## purchase_history テーブル
+## purchase_historys テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
 | user | references | null: false, foreign_key:true |
-| item | references | null: false, foreigen_key:true |
+| item | references | null: false, foreign_key:true |
 
 ### Association
 
-belongs_to :user
-
-
+- belongs_to :user
+- belongs_to :item
+- belongs_to :sending_destination
