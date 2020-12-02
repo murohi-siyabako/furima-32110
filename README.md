@@ -6,26 +6,24 @@
 | -------- | ------ | ----------- |
 | nickname | string | null: false |
 | email    | string | null: false |
-| password | string | null: false |
+| encrypted_password | string | null: false |
 | first_name   | string | null: false |
 | family_name  | string | null: false |
 | first_name_kana | string | null: false |
 | family_name_kana | string | null: false |
 | birth_day | date | null: false |
-| user | references | null:false, foreign_key |
 
 ### Association
 
 - has_many :items
-- has_one :sending_destinations
-- has_one :purchase_historys
+- has_many :purchase_histories
 
 ## sending_destinations テーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
 | post_code | string | null: false                    |
-| prefecture_id | integer | null: false              |
+| prefecture_id | integer | null: false                |
 | city | string | null: false                          |
 | house_number | string | null: false                  |
 | building_name | string |                             |
@@ -34,8 +32,7 @@
 
 ### Association
 
-- belongs_to :user
-- belongs_to :item
+- belongs_to :purchase_history
 
 ## items テーブル
 
@@ -44,7 +41,7 @@
 | name    | string     | null: false                    |
 | introduction | text | null: false                     |
 | price | integer | null: false                         |
-| item_condition | integer | null: false                |
+| item_condition_id | integer | null: false                |
 | postage_id | integer | null: false                 |
 | prefecture_id | integer | null: false              |
 | prepare_id | integer | null: false, foreign_key:true |
@@ -54,10 +51,9 @@
 ### Association
 
 - belongs_to :user
-- belongs_to :sending_destination
-- belongs_to :purchase_history
+- has_one :purchase_history
 
-## purchase_historys テーブル
+## purchase_histories テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
@@ -68,4 +64,4 @@
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :sending_destination
+- has_one :sending_destination
