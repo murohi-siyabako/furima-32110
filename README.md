@@ -6,7 +6,6 @@
 | -------- | ------ | ----------- |
 | nickname | string | null: false |
 | email    | string | null: false |
-| password | string | null: false |
 | encrypted_password | string | null: false |
 | first_name   | string | null: false |
 | family_name  | string | null: false |
@@ -17,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_one :purchase_historys
+- has_many :purchase_histories
 
 ## sending_destinations テーブル
 
@@ -31,7 +30,9 @@
 | phone_number | string | null: false                 |
 | purchase_history | references | null: false, foreign_key: true |
 
+### Association
 
+- belongs_to :purchase_history
 
 ## items テーブル
 
@@ -52,7 +53,7 @@
 - belongs_to :user
 - belongs_to :purchase_history
 
-## purchase_historys テーブル
+## purchase_histories テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
@@ -63,3 +64,4 @@
 
 - belongs_to :user
 - belongs_to :item
+- belongs_to :sending_destination
