@@ -12,20 +12,18 @@
   <body>
     <header class="header">
       <div class="inner">
-<<<<<<< Updated upstream
-        <div class ="">
-=======
         <div class="nav">
           <div class="nav_left">
             <%= link_to imarge_tag("furima-logo-color.png",class: :logo), root_path %>
           </div>
           <% if user_signed_in?%>
-            <%= link_to "ログアウト", root_path, %>
+            <%= link_to "#{@user_name}", root_path %>
+            <%= link_to "ログアウト", root_path, method: :delete, class: :nav_logout %>
           <% else %>
-          <%end%>
-
+            <%= link_to "ログイン", root_path, class: :nav_btn %>
+            <%= link_to "新規登録", root_path, class: :nav_btn %>
+          <% end %>
         </div>
->>>>>>> Stashed changes
       </div>
     </header>
     <%= yield %>
