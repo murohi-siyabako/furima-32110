@@ -122,10 +122,10 @@
           <%= link_to item_path(item.id), method: :get do %>
           <div class='item-img-content'>
             <%= image_tag item.image, class: "item-img" %>
-            <% if user_signed_in? %>
-              <div class='sold-out'>
-                <span>Sold Out!!</span>
-              </div>
+            <% if item.purchase_history.present? %>
+                <div class='sold-out'>
+                  <span>Sold Out!!</span>
+                </div>
             <% end %>
           </div>
             <div class='item-info'>
