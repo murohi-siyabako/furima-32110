@@ -1,15 +1,14 @@
 class PurchaseHistoriesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_purchase_history, only: [:index, :create]
   def index
     @user_item = UserItem.new
-    @item = Item.find(params[:item_id])
     if current_user == @item.user
       redirect_to root_path
     end
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @user_item = UserItem.new(purchase_history_params)
     if @user_item.valid?
       pay_item
@@ -24,6 +23,10 @@ class PurchaseHistoriesController < ApplicationController
 
   def purchase_history_params
     params.require(:user_item).permit(:post_code, :prefecture_id, :city, :house_number, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+  end
+  
+  def set_purchase_history
+    @item = Item.find(params[:item_id])
   end
 
   def pay_item

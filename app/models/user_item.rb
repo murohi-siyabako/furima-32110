@@ -8,6 +8,8 @@ class UserItem
     validates :city
     validates :house_number
     validates :phone_number, numericality: { only_integer: true, message: "Input only number"}
+    validates :user_id
+    validates :item_id
     validates :token
   end
   def save

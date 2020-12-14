@@ -9,6 +9,10 @@ RSpec.describe UserItem, type: :model do
       it '全ての値が正しく入力されていれば購入できること' do
         expect(@user_item).to be_valid
       end
+      it 'building_nameが空でも購入できる' do
+        @user_item.building_name = nil
+        expect(@user_item).to be_valid
+      end
     end
     context '商品購入がうまくいかない時' do
       it 'post_codeが空だと購入できない' do
