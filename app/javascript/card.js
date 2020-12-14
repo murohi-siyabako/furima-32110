@@ -28,8 +28,8 @@ const pay = ()=> {
       document.getElementById("card-exp-year").removeAttribute("name");
 
       document.getElementById("charge-form").submit();
-    })
-  })
-}
+    });
+  });
+};
 
 window.addEventListener("load", pay);
