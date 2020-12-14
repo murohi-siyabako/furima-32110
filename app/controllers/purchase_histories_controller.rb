@@ -3,7 +3,7 @@ class PurchaseHistoriesController < ApplicationController
   before_action :set_purchase_history, only: [:index, :create]
   def index
     @user_item = UserItem.new
-    if current_user == @item.user
+    if current_user == @item.user || @item.purchase_history.present?
       redirect_to root_path
     end
   end

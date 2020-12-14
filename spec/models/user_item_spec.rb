@@ -2,16 +2,17 @@ require 'rails_helper'
 
 RSpec.describe UserItem, type: :model do
   before do
+    @user = FactoryBot.build(:user)
     @user_item = FactoryBot.build(:user_item)
   end
   describe '購入内容確認' do
     context '商品購入がうまくいく時' do
       it '全ての値が正しく入力されていれば購入できること' do
-        expect(@user_item).to be_valid
+        expect(@user).to be_valid
       end
       it 'building_nameが空でも購入できる' do
         @user_item.building_name = nil
-        expect(@user_item).to be_valid
+        expect(@user).to be_valid
       end
     end
     context '商品購入がうまくいかない時' do
@@ -50,6 +51,11 @@ RSpec.describe UserItem, type: :model do
         @user_item.valid?
         expect(@user_item.errors.full_messages).to include("Phone number Input only number")
       end
+      it 'phone_numberが12桁だと購入できない' do
+        @user_item.phone_number = "090123456789"
+        @user_item.valid?
+        expect(@user_item.errors.full_messages).to include("Phone number is out of setting range")
+      end
       it 'tokenが空では購入できない' do
         @user_item.token = nil
         @user_item.valid?
@@ -65,6 +71,7 @@ RSpec.describe UserItem, type: :model do
         @user_item.valid?
         expect(@user_item.errors.full_messages).to include("Item can't be blank")
       end
+
     end
   end
 end
