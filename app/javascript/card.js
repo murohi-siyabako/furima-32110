@@ -18,7 +18,7 @@ const pay = ()=> {
       if (status == 200) {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
-        const token0bj = `<input value=${token} type="hidden" name='token'>`;
+        const token0bj = `<input value=${token} name='token' type="hidden">`;
         renderDom.insertAdjacentHTML("beforeend", token0bj);
       }
 
